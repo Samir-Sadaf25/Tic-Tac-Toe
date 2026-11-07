@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="src/TicTacToe.Application/TicTacToe.Application.csproj" Id="d2163234-9ad5-4665-b1b5-e1f049ec3c27" />
+  <Project Path="src/TicTacToe.Domain/TicTacToe.Domain.csproj" Id="b64b45bf-5b62-46a6-8bfe-f753f7ce5458" />
+  <Project Path="src/TicTacToe.Infrastructure/TicTacToe.Infrastructure.csproj" Id="869b0518-1bc3-4247-98af-db165bb953f4" />
+  <Project Path="src/TicTacToe.Web/TicTacToe.Web.csproj" Id="b70b5f1c-d198-4b91-a4e6-101ed85db5f0" />
+</Solution>

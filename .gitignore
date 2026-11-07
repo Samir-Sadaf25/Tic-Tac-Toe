@@ -1,0 +1,10 @@
+**/.vs
+**/bin
+**/obj
+**/*.user
+**/Logs/*
+**/node_modules
+**/*.xml
+web.env
+.zcodeignore
+/src/.zcode/plans/plan-sess_ba081fcc-de19-4606-aef3-d80be95d84db.md
