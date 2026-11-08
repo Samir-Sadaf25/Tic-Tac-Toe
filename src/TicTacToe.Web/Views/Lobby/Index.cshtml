@@ -1,0 +1,54 @@
+@{
+    ViewData["Title"] = "TicTacToe Live — Lobby";
+}
+
+<div class="container py-4">
+    <div class="text-center mb-4">
+        <h1 class="display-5 fw-bold">TicTacToe Live</h1>
+        <p class="lead text-muted">Play real-time multiplayer Tic-Tac-Toe without registration</p>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-5">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="card-title mb-0">Create a Match</h5>
+                </div>
+                <div class="card-body">
+                    <form id="createMatchForm">
+                        <div class="mb-3">
+                            <label for="displayName" class="form-label">Your Name</label>
+                            <input type="text" id="displayName" name="displayName" class="form-control" maxlength="20" placeholder="e.g. Alex" required />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label d-block">Choose Your Symbol</label>
+                            <div class="btn-group w-100" role="group">
+                                <input type="radio" class="btn-check" name="symbol" id="symbolX" value="X" checked autocomplete="off">
+                                <label class="btn btn-outline-primary" for="symbolX">Play as X (First move)</label>
+
+                                <input type="radio" class="btn-check" name="symbol" id="symbolO" value="O" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="symbolO">Play as O</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100" id="createMatchBtn">Create Match</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <h5 class="card-title mb-0">Available Matches</h5>
+                </div>
+                <div class="card-body">
+                    <div id="lobbyEmptyMessage" class="text-center py-4 text-muted">
+                        <p class="mb-0">No matches waiting right now. Create one to get started!</p>
+                    </div>
+                    <div id="waitingMatchesList" class="list-group d-none">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

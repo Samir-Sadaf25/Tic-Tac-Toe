@@ -1,0 +1,49 @@
+using NUnit.Framework;
+using Shouldly;
+using TicTacToe.Infrastructure.Security;
+
+namespace TicTacToe.IntegrationTests.Security;
+
+[TestFixture]
+public class GuestTokenServiceTests
+{
+    private readonly GuestTokenService _tokenService = new();
+
+    [Test]
+    public void Issue_GeneratesUniqueTokensWithMatchingHash()
+    {
+        var issue1 = _tokenService.Issue();
+        var issue2 = _tokenService.Issue();
+
+        issue1.RawToken.ShouldNotBeNullOrWhiteSpace();
+        issue1.TokenHash.ShouldNotBeNullOrWhiteSpace();
+        issue1.RawToken.ShouldNotBe(issue1.TokenHash);
+
+        issue2.RawToken.ShouldNotBe(issue1.RawToken);
+        issue2.TokenHash.ShouldNotBe(issue1.TokenHash);
+
+        // Hashing the raw token must reproduce the exact token hash
+        var computedHash = _tokenService.Hash(issue1.RawToken);
+        computedHash.ShouldBe(issue1.TokenHash);
+    }
+
+    [Test]
+    public void Hash_IsDeterministic()
+    {
+        const string rawToken = "sample-guest-token-12345";
+        var hash1 = _tokenService.Hash(rawToken);
+        var hash2 = _tokenService.Hash(rawToken);
+
+        hash1.ShouldBe(hash2);
+        hash1.Length.ShouldBe(64); // SHA-256 hex string length
+    }
+
+    [TestCase(null)]
+    [TestCase("")]
+    [TestCase("   ")]
+    public void Hash_NullOrEmptyToken_ReturnsEmptyString(string? rawToken)
+    {
+        var hash = _tokenService.Hash(rawToken!);
+        hash.ShouldBe(string.Empty);
+    }
+}
